@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Faker from 'faker'
-import { Button, Modal } from 'react-bootstrap'
-
+import { Button, Form, Modal } from 'react-bootstrap'
 Faker.locale = "es_MX"
-
 export default function CalculationForm(props) {
   const [numero, setNumero] = useState(5)
   const [alumno, setAlumno] = useState({
@@ -14,6 +12,8 @@ export default function CalculationForm(props) {
     tipo_documento: Faker.random.arrayElement(["CC", "TI", "PP"]),
     genero: Faker.random.arrayElement(["hombre", "mujer"])
   })
+
+  const [validador, setValidador] = useState(false)
 
   const [show, setShow] = useState(false);
 
@@ -35,12 +35,20 @@ export default function CalculationForm(props) {
       .then(alumno => setAlumno(alumno))
   }
 
-  console.log("Entro en el formulario de IMC")
+  const enviarDatos = e => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidador(true);
+  }
+
   return (
     <article className="col">
       <p>Numero : {numero}</p>
       <button className="btn btn-danger" onClick={() => setNumero(numero + 10)}>Incrementar Número</button>
-      <form className="form">
+      <Form noValidate validated={validador} onSubmit={enviarDatos}>
         <div className="">
           <label htmlFor="peso" className="col-form-label">Peso (kilos)</label>
           <input type="number" className="form-control" id="peso" name="peso" required />
@@ -48,8 +56,14 @@ export default function CalculationForm(props) {
         <div className="">
           <label htmlFor="altura" className="col-form-label">Altura (cm)</label>
           <input type="number" className="form-control" id="altura" name="altura" required />
-        </div>
-      </form>
+          <Form.Control.Feedback type="invalid">
+            El campo es obligatorio.
+                    </Form.Control.Feedback>
+          <Form.Control.Feedback>Dato correcto!</Form.Control.Feedback>
+        </div><br />
+        <input type="submit" value="Enviar" className="btn btn-primary" />
+      </Form>
+      <br />
 
       <Button variant="primary" onClick={handleShow}>
         Abrir información del estudiante
@@ -67,8 +81,7 @@ export default function CalculationForm(props) {
           <p>Documento: {alumno.documento}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar</Button>
+          <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
 
         </Modal.Footer>
       </Modal>

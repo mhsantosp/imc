@@ -4,7 +4,6 @@ import Faker from 'faker'
 import CalculationForm from './CalculationForm'
 import CalcultarionViewIMC from './CalculationViewIMC'
 import ScaleIMC from './ScaleIMC'
-
 Faker.locale = "es_MX"
 
 class CalculationBody extends Component {

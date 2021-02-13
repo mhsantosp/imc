@@ -1,5 +1,5 @@
-import React from 'react'
-import { Card, Table } from 'react-bootstrap'
+import React from 'react';
+import { Card, Table } from 'react-bootstrap';
 
 export default function ViewBodyIMC() {
   const data_imc = [
@@ -40,7 +40,7 @@ export default function ViewBodyIMC() {
             </tr>
           </thead>
           <tbody>
-            {data_imc.map(data => <RowTableImc {...data} />)}
+            {data_imc.map((data, i) => <RowTableImc {...data} key={i} />)}
           </tbody>
         </Table>
       </Card.Body>

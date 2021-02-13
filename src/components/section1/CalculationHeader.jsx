@@ -1,5 +1,5 @@
-import React from 'react'
-import UsuarioContext from './../../context/UsuarioContext'
+import React from 'react';
+import UsuarioContext from './../../context/UsuarioContext';
 
 let miNombre = () => {
   let nombre = <p>Mi nombre es Osccar</p>

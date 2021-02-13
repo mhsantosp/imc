@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import scale from './../../images/bascula-dibujo.png'
-import UsuarioContext from './../../context/UsuarioContext'
+import React, { useContext } from 'react';
+import scale from './../../bascula-dibujo.png';
+import UsuarioContext from './../../context/UsuarioContext';
 
 export default function ScaleIMC() {
   let usuario = useContext(UsuarioContext)
