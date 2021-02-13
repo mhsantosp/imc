@@ -1,5 +1,5 @@
 import React from 'react';
-import patientimg from '../../mesomorfo.png';
+import patientimg from '../../images/mesomorfo.png';
 import { Card, Col, Row, Image } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
